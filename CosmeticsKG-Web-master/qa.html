@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="asset/css/owl.carousel.css">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css?ver=1">
+    <link rel="stylesheet" type="text/css" href="./css/flexslider.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link href="./css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/interactive-graph.css">
+    <link href="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri:400,500,600,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link href="https://cdn.bootcss.com/prism/9000.0.1/themes/prism.min.css" rel="stylesheet">
+    <title>Product list</title>
+</head>
+<style>
+    .my-search{
+        width: 100%;
+        margin-top: 30px;
+        font-size: larger;
+        border: none;
+        border-bottom: 2px solid #faa7a3;
+        color: #888;
+        text-indent: 5px;
+        background: rgba(0,0,0,0);
+    }
+    .my-search:focus{
+        outline: none;
+    }
+    .btn{
+        cursor: pointer;
+        padding: 2px 4px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 1.5rem;
+        color: #faa7a3;
+    }
+    .btn:hover{
+        color: #fff;
+        background-color: #faa7a3;
+    }
+    pre {outline: 1px solid #ccc; }
+    .string { color: green; }
+    .number { color: darkorange; }
+    .boolean { color: blue; }
+    .null { color: magenta; }
+    .key { color: red; }
+</style>
+<body>
+<!--header-->
+<!--header desktop-->
+<div class="header">
+    <div class="container-fluid search-header">
+        <form>
+            <input type="text" placeholder="Search cosmetic here">
+            <span class="close-search">X</span>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <div class="header-desktop ">
+            <div class=" header-menu-desktop d-flex justify-content-between">
+                <div>
+                    <div class="logo">
+                        <a href="index.html"><img src="imager/home/Logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="index.html">Knowledge Graph</a></li>
+                            <li><a href="#">Question Answering</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--end header desktop-->
+<!--header mobile-->
+<div class="header">
+    <div class="container-fluid search-header">
+        <form>
+            <input type="text" placeholder="Search">
+            <span class="close-search">X</span>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <div class="header-mobile">
+            <div class="header-menu-mobile d-flex justify-content-between">
+                <div>
+                    <button><span class="lnr lnr-menu click-mobile"></span></button>
+                </div>
+                <div class="logo">
+                    <img src="imager/home/Logo.png" alt="">
+                </div>
+                <div>
+                    <div class="row header-right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-mobile">
+            <ul>
+                <li><a href="index.html">Knowledge Graph</a></li>
+                <li><a href="#">Question Answering</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--end header mobile-->
+<!--end header-->
+
+<!--title detail-->
+<div class="title-page"
+     style="background-image: url('imager/home/bg-review.jpg');background-position: center center;background-size: cover;">
+    <div class="container">
+        <div class="row" >
+            <div class=" col-md-6 inner-title-page" style="padding: 70px 0;margin: auto">
+                <h2 style="font-family: 'El Messiri', sans-serif;">Question Answering</h2>
+                <div style="position:relative;">
+                <input type="text" class="igraph-searchbox my-search" placeholder="Input your question here" style="display: block" id="question">
+                    <div class="btn click-quick-view" data-toggle="modal" style="" id="search">
+                        <span class="lnr lnr-magnifier"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--end title detail-->
+<!--product list-->
+<div class="container" style="margin-top: 50px">
+    <h2 id="info" style="text-align: center;font-family: 'El Messiri', sans-serif;"></h2>
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-6 col-sm-12" >
+            <div style="height:500px;" id="tree">
+
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12" >
+            <div style="height:500px;" id="graph">
+
+            </div>
+        </div>
+    </div>
+    <h5>cypher:</h5>
+    <pre class="line-numbers" style="white-space: pre-line;">
+          <code class="language-markup" id="cypher">
+          </code>
+      </pre>
+    <div class="prodcut-list">
+        <div class="row">
+                <div class="row product" style="width: 100%;" id="product">
+<!--                    <div class="col-md-3 col-sm-6 col-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-img-top">-->
+<!--                                <a href="product-single.html" class="wp-post-image">-->
+<!--                                    <img class="image-cover" src="imager/product/product3.jpg" alt="product">-->
+<!--                                </a>-->
+<!--                                <div class="icon-product">-->
+<!--                                    <button type="button" class="btn click-quick-view" data-toggle="modal"-->
+<!--                                            data-target="#exampleModalCenter">-->
+<!--                                        <span class="lnr lnr-magnifier"></span>-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <p class="card-title"><a href="product-list.html">Make up</a></p>-->
+<!--                                <p class="woocommerce-loop-product__title"><a href="product-single.html">-->
+<!--                                    Cleanser layde</a></p>-->
+<!--                                <span class="price">-->
+<!--												<ins>-->
+<!--													<span class="woocommerce-Price-amount amount">-->
+<!--														<span class="woocommerce-Price-currencySymbol">$</span>56-->
+<!--													</span>-->
+<!--												</ins>-->
+<!--                                    </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+
+        </div>
+    </div>
+</div>
+<!--end product list-->
+
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/interactive-graph.js"></script>
+<script src="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+<script src="https://cdn.bootcss.com/prism/9000.0.1/prism.min.js"></script>
+<script>
+    let errMsg = "Sorry, I don't know."
+    let exampleQ = ["和纪梵希小羊皮唇膏307的颜色相同的迪奥口红有哪些？",
+        "小钢笔印迹唇釉113的品牌是什么？",
+        "禁忌之吻大理石纹唇膏25的颜色是什么?",
+        "YSL的口红一共有多少？",
+        "300左右的YSL口红有哪些？",
+        "黑管唇膏225的评价有哪些？",
+        "颜色漂亮的口红有哪些？"]
+    let question = exampleQ[Math.floor(Math.random()*exampleQ.length)]
+    var myChartT = echarts.init(document.getElementById('tree'));
+    var myChartG = echarts.init(document.getElementById('graph'));
+
+    function showtree(nodes,edges){
+
+        nodes.forEach(n=>{n.children=[]})
+        var top = 0;
+        edges.forEach(e=>{
+            if(e.parent!=0){
+                nodes[e.parent-1].children.push(nodes[e.child-1])
+            }else {
+                top = e.child-1
+            }
+        })
+        data = nodes[top]
+        console.log(data)
+        myChartT.setOption(option = {
+            title: {
+                text: '句法树'
+            },
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series:[
+                {
+
+                    type: 'tree',
+
+                    data: [data],
+
+                    left: '2%',
+                    right: '2%',
+                    top: '8%',
+                    bottom: '20%',
+
+                    symbol: 'circle',
+                    symbolSize: 50,
+                    orient: 'vertical',
+
+                    expandAndCollapse: false,
+
+                    label: {
+                        normal: {
+                            position: 'right',
+                            rotate: 0,
+                            verticalAlign: 'middle',
+                            align: 'left',
+                            fontSize: 14
+                        }
+                    }
+
+                }
+            ]
+        });
+    }
+
+    function showgraph(nodesO,edges){
+        let nodes = []
+        let ns=[]
+        edges.forEach(e=>{
+            ns.push(e.source)
+            ns.push(e.target)
+        })
+        ns = Array.from(new Set(ns))
+        console.log(ns)
+        nodesO.forEach(n=>{
+            if (ns.indexOf(n.id)!=-1){
+                nodes.push(n)
+            }
+        })
+
+        let a = new Array();
+        nodes.forEach(n=>{
+            a.push(n.id)
+        })
+        edges.forEach(e=>{
+            e.source = a.indexOf(e.source)
+            e.target = a.indexOf(e.target)
+        })
+        console.log(nodes)
+        console.log(edges)
+        myChartG.setOption(option = {
+            title: {
+                text: '问题图'
+            },
+            tooltip: {},
+            animationDurationUpdate: 1500,
+            animationEasingUpdate: 'quinticInOut',
+            series : [
+                {
+                    type: 'graph',
+                    layout: 'force',
+                    force: {
+                        repulsion: 2000
+                    },
+                    symbolSize: 50,
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true
+                        }
+                    },
+                    data: nodes,
+                    // links: [],
+                    links: edges,
+                    lineStyle: {
+                        normal: {
+                            opacity: 0.9,
+                            width: 2,
+                            curveness: 0
+                        }
+                    }
+                }
+            ]
+        })
+    }
+
+
+    $("#question").val(question);
+    $("#search").on('click',()=>{
+        var question  = $('#question').val()
+        $("#info").text("")
+        $("#product").text("")
+        $("#cypher").text("");
+
+
+        if (question.length>0){
+            $.post('/CosmeticsKG/question?question='+question,(rsp)=>{
+                console.log(rsp)
+                if(rsp.success){
+                    if (rsp.type=="NODE"){
+                        rsp.data.forEach(p=>{
+                            let card = `<div class="col-md-3 col-sm-6 col-12">
+                        <div class="card">
+                            <div class="card-img-top">
+                                <a href="product-single.html" class="wp-post-image">
+                                    <img class="image-cover" src='${p.image}' alt="product">
+                                </a>
+                                <div class="icon-product">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title"><a href="product-list.html">${p.brand}</a></p>
+                                <p class="woocommerce-loop-product__title"><a href="index.html?id=${p.id}">
+                                    ${p.name}</a></p>
+                                <span class="price">
+                            <ins>
+                            <span class="woocommerce-Price-amount amount">
+                            <span class="woocommerce-Price-currencySymbol">￥</span>${p.price}
+                            </span>
+                        </ins>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>`
+                            $("#product").append(card)
+                        })
+
+                    }else {
+                        if (rsp.data.length==0){
+                            $("#info").text("null")
+                        }else {
+                            $("#info").text(rsp.data.join(","))
+                        }
+                    }
+                    $("#cypher").text(rsp.cypher);
+                    showgraph(rsp.nodes,rsp.graphEdges)
+                    showtree(rsp.nodes,rsp.treeEdges)
+                }else {
+                    $("#info").text(errMsg)
+                }
+            }).fail(function(){
+                $("#info").text(errMsg)
+            });
+        }
+    })
+</script>
+</body>
+</html>
