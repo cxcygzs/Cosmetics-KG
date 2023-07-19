@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css?ver=1">
+    <link rel="stylesheet" type="text/css" href="./css/flexslider.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link href="./css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/interactive-graph.css">
+    <link href="https://fonts.googleapis.com/css?family=El+Messiri:400,500,600,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <title>Uray</title>
+</head>
+<style>
+    .igraph-searchbox{
+
+    }
+    .my-search{
+        width: 100%;
+        margin-top: 30px;
+        font-size: larger;
+        border: none;
+        border-bottom: 2px solid #faa7a3;
+        color: #888;
+        text-indent: 5px;
+        background: rgba(0,0,0,0);
+    }
+    .my-search:focus{
+        outline: none;
+    }
+    .btn{
+        padding: 2px 4px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 1.5rem;
+        color: #faa7a3;
+    }
+    .btn:hover{
+        color: #fff;
+        background-color: #faa7a3;
+    }
+</style>
+<body>
+
+
+<!--header-->
+<!--header desktop-->
+<div class="header">
+    <div class="container-fluid search-header">
+        <form>
+            <input type="text" placeholder="Search cosmetic here">
+            <span class="close-search">X</span>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <div class="header-desktop ">
+            <div class=" header-menu-desktop d-flex justify-content-between">
+                <div>
+                    <div class="logo">
+                        <a href="index.html"><img src="imager/home/Logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="#">Knowledge Graph</a></li>
+                            <li><a href="qa.html">Question Answering</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--end header desktop-->
+<!--header mobile-->
+<div class="header">
+    <div class="container-fluid search-header">
+        <form>
+            <input type="text" placeholder="Search">
+            <span class="close-search">X</span>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <div class="header-mobile">
+            <div class="header-menu-mobile d-flex justify-content-between">
+                <div>
+                    <button><span class="lnr lnr-menu click-mobile"></span></button>
+                </div>
+                <div class="logo">
+                    <img src="imager/home/Logo.png" alt="">
+                </div>
+                <div>
+                    <div class="row header-right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-mobile">
+            <ul>
+                <li><a href="#">Knowledge Graph</a></li>
+                <li><a href="qa.html">Question Answering</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--end header mobile-->
+<!--end header-->
+
+
+<!--title detail-->
+<div class="title-page"
+     style="background-image: url('imager/shop/Shop_3Columns-title.jpg');background-position: center center;background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-6 inner-title-page" style="padding: 70px 0;" igraph-control-role="SearchBoxCtrl">
+                <h2 style="font-family: 'El Messiri', sans-serif;">Cosmetics Search</h2>
+                <div style="position:relative;">
+                    <input type="text" class="igraph-searchbox my-search" placeholder="Search cosmetic here" style="display: block">
+                    <div class="btn click-quick-view" data-toggle="modal" style="">
+                        <span class="lnr lnr-magnifier"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end title detail-->
+<!--product detail-->
+<div class="container">
+    <div class="product-single-detail" style="margin: 0;">
+        <div class="row product_detail">
+            <div class="col-md-8 col-sm-12 col-12">
+                <span style="color: #aaa;">Tip: 单击查看信息，双击展开节点。延迟大，请稍等几秒~</span>
+                <div style="height:500px">
+                    <div id="graphArea" style="height: 100%"></div>
+                </div>
+                <!--toolbar-->
+                <div class="toolbarPanel igraph-dockable igraph-draggable" style="display: none;" igraph-control-role="ToolbarCtrl" igraph-dock-position="B:-6,0">
+                    <div class="toolbar"></div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-12 content-product" style="display: block" igraph-control-role="InfoBoxCtrl">
+                <div class="infoPanel2">
+                <div class="photo" style="width: 100%;margin:auto 0;text-align: center;margin-bottom: 20px">
+                    <img style="width: 75%;" id="image" src="" alt="">
+                </div>
+                <h2 id="name"></h2>
+                    <h4 style="color: #bbbbbb;font-size: 1.5rem" id="brandName"></h4>
+                    <h4 style="color: #333333;" id="color"></h4>
+                <h2 style="color: #faa7a3;" id="price"></h2>
+                <div class="infor-product" id="info">
+
+                </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--end product detail-->
+
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/interactive-graph.js"></script>
+<script type="text/javascript">
+    igraph.i18n.setLanguage("chs");
+    let theme ={
+            canvasBackground: "#F3F3F3",
+            highlight: {
+                gradientInnerColor: "rgb(67, 216, 253)",
+                gradientOutterColor: "#F3F3F3",
+            },
+            expansion: {
+                backgroudColorCollapsed: "#ccc",
+                backgroudColorExpanded: "#faa7a3",
+                fontColor: "#FFFFFF"
+            },
+            nodes: {
+                borderWidth: 2,
+                shape: 'dot',
+                scaling: {
+                    min: 10,
+                    max: 30
+                },
+                font: {
+                    size: 12,
+                    strokeWidth: 5
+                }
+            },
+            edges: {
+                width: 0.1,
+                font: {
+                    size: 0,
+                    color: '#777',
+                },
+                color: {
+                    inherit: 'to',
+                    opacity: 1,
+                    color: '#555',
+                    highlight: '#faa7a3',
+                    hover: '#faa7a3',
+                },
+                selectionWidth: 1,
+                hoverWidth: 1,
+                arrows: {
+                    to: {
+                        enabled: true,
+                        scaleFactor: 0.5,
+                    }
+                },
+                smooth: {
+                    enabled: true,
+                    type: 'continuous',
+                    roundness: 0.5,
+                }
+            },
+            groups: {
+                useSeqColors: true,
+                SeqColors:[
+
+                    {border: "#FFFFFF", background: "#faa7a3", highlight: {border: "#FFFFFF", background: "#4DD8FB"}, hover: {border: "#FFFFFF", background: "#faa7a3"}},
+                    {border: "#FFFFFF", background: "#fedb67", highlight: {border: "#FFFFFF", background: "#fae96e"}, hover: {border: "#FFFFFF", background: "#fae96e"}},
+                    {border: "#FFFFFF", background: "#a2e5b9", highlight: {border: "#FFFFFF", background: "#a7f0c1"}, hover: {border: "#FFFFFF", background: "#a7f0c1"}},
+                    {border: "#FFFFFF", background: "#6de0e3", highlight: {border: "#FFFFFF", background: "#7afcff"}, hover: {border: "#FFFFFF", background: "#7afcff"}},
+                    {border: "#FFFFFF", background: "#3ea3d9", highlight: {border: "#FFFFFF", background: "#49c0ff"}, hover: {border: "#FFFFFF", background: "#49c0ff"}},
+                    {border: "#FFFFFF", background: "#fd9f83", highlight: {border: "#FFFFFF", background: "#fcad8c"}, hover: {border: "#FFFFFF", background: "#fcad8c"}},
+                    {border: "#FFFFFF", background: "#f97394", highlight: {border: "#FFFFFF", background: "#fd80a2"}, hover: {border: "#FFFFFF", background: "#fd80a2"}},
+                    {border: "#FFFFFF", background: "#de64ad", highlight: {border: "#FFFFFF", background: "#f36ebd"}, hover: {border: "#FFFFFF", background: "#f36ebd"}},
+                    {border: "#FFFFFF", background: "#d186be", highlight: {border: "#FFFFFF", background: "#fba0e5"}, hover: {border: "#FFFFFF", background: "#fba0e5"}},
+                    {border: "#FFFFFF", background: "#e5bdf2", highlight: {border: "#FFFFFF", background: "#f2c7ff"}, hover: {border: "#FFFFFF", background: "#f2c7ff"}},
+                    {border: "#FFFFFF", background: "#9d98f2", highlight: {border: "#FFFFFF", background: "#a6a1ff"}, hover: {border: "#FFFFFF", background: "#a6a1ff"}},
+                    {border: "#FFFFFF", background: "#837be8", highlight: {border: "#FFFFFF", background: "#8f87ff"}, hover: {border: "#FFFFFF", background: "#8f87ff"}},
+                    {border: "#FFFFFF", background: "#94bbf8", highlight: {border: "#FFFFFF", background: "#9ac2ff"}, hover: {border: "#FFFFFF", background: "#9ac2ff"}},
+                ]
+            }
+    }
+    var app = new igraph.GraphExplorer(document.getElementById('graphArea'),theme);
+    app.toggleNavigationButtons(false);
+    app.toggleShowEdgeLabelAlways(true);
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+    app.connect("/graphserver/connector-bolt", function(){
+        let id = getQueryVariable("id")
+
+        if(!id||id==null||id.length==0){
+            id = 2634
+        }
+        console.log(id)
+        app.pickup([{nodeid:id}])
+        app.getGraphService().requestGetNodeInfos([id], function (nodeInfos) {
+            console.log(nodeInfos);
+                let info = jQuery.parseJSON(nodeInfos[0]);
+                if (info.price!=""){
+                    $('#image').attr('src',info.image);
+                    $('#name').text(info.name);
+                    $('#price').text('￥'+info.price);
+                    $('#brandName').text(info.brand);
+                    $('#color').text(info.subName);
+                    $('.content-product').show()
+                }
+            });
+        app.on('SHOW_INFO', (args) => {
+            app.getGraphService().requestGetNodeInfos(args.nodes,
+                function (nodeInfos) {
+                    let info = jQuery.parseJSON(nodeInfos[0]);
+                    if (info.price!=""){
+                        $('#image').attr('src',info.image);
+                        $('#name').text(info.name);
+                        $('#price').text('￥'+info.price);
+                        $('#brandName').text(info.brand);
+                        $('#color').text(info.subName);
+                        $('.content-product').show()
+                    }
+                });
+        });
+    });
+
+</script>
+</body>
+</html>
