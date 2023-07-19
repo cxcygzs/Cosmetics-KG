@@ -6,7 +6,7 @@ graph = Graph("bolt://localhost:7687", auth=("neo4j", "12345678"))
 
 # 导入节点数据
 def import_nodes_from_csv():
-    with open('nodes.csv', 'r',encoding='utf-8') as file:
+    with open('nodes.csv', 'r', encoding='utf-8') as file:
         lines = file.readlines()
         property = ['brand','code','engName','goods_id','id','image','max','min','name','price','size','sub_name','typeName']
         for line in lines[1:]:
@@ -21,7 +21,7 @@ def import_nodes_from_csv():
 
 # 导入关系数据
 def import_relationships_from_csv():
-    with open('rel.csv', 'r',encoding='utf-8') as file:
+    with open('rel.csv', 'r', encoding='utf-8') as file:
         lines = file.readlines()
 
         for line in lines[1:]:
